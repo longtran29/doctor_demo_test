@@ -2,22 +2,56 @@ package com.doctor.anywhere.task.exception;
 
 import com.doctor.anywhere.task.dto.response.StatusResponseDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
-public class CustomResponseException extends RuntimeException {
-    public CustomResponseException(String message) {
-        super(message);
+public class CustomException extends RuntimeException {
+    private final Integer code;
+
+    public CustomException() {
+        this.code = null;
     }
 
-    
+    public CustomException(String message) {
+        super(message);
+        this.code = null;
+    }
 
+    public CustomException(String message, Throwable cause) {
+        super(message, cause);
+        this.code = null;
+    }
 
-    //
-//    public CustomResponseException(HttpStatus status, String reason) {
-//        super(status, reason);
-//    }
-//
-//    public CustomResponseException(StatusResponseDTO response) {
-//        super(HttpStatus.valueOf(Integer.parseInt(response.getCode())), response.getMessage());
-//    }
+    public CustomException(int code) {
+        this.code = Integer.valueOf(code);
+    }
+
+    public CustomException(int code, String message) {
+        super(message);
+        this.code = Integer.valueOf(code);
+    }
+
+    public CustomException(int code, Throwable cause) {
+        super(cause);
+        this.code = Integer.valueOf(code);
+    }
+
+    public CustomException(int code, String message, Throwable cause) {
+        super(message, cause);
+        this.code = Integer.valueOf(code);
+    }
+
+    public CustomException(int code, String message, Throwable cause, boolean enableSuppression,
+                           boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+        this.code = Integer.valueOf(code);
+    }
+
+    public Integer getCode() {
+        return this.code;
+    }
+
+    public CustomException(StatusResponseDTO response) {
+        super(response.getMessage());
+        this.code = Integer.valueOf(response.getCode());
+
+    }
 }
