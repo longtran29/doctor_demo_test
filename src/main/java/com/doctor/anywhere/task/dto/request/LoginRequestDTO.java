@@ -1,2 +1,11 @@
-package com.doctor.anywhere.task.dto.request;public class LoginRequestDTO {
+package com.doctor.anywhere.task.dto.request;
+
+import lombok.Data;
+
+@Data
+public class LoginRequestDTO {
+
+    private String username;
+
+    private String password;
 }
