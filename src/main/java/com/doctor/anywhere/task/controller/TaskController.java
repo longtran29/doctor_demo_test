@@ -26,7 +26,7 @@ public class TaskController {
     }
 
     @Operation(summary = "Create a new task ")
-    @PostMapping(value = "/create")
+    @PostMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_DOCTOR', 'ROLE_NURSE')")
     public ResponseEntity<?> createNewTask(@RequestBody @Valid TaskRequestDTO task) {
         return ResponseEntity.status(HttpStatus.CREATED).body(taskService.createTask(task));
